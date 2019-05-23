@@ -5,19 +5,34 @@ Input: "25525511135"
 Output: ["255.255.11.135", "255.255.111.35"]
 合法的ip格式(0~255).(0~255).(0~255).(0~255)
 """
-# 参考https://leetcode.com/problems/restore-ip-addresses/discuss/30972/WHO-CAN-BEAT-THIS-CODE改进版本
+#直接用的这里的方法https://blog.csdn.net/fuxuemingzhu/article/details/80657420
 
-def restore_ip(ip_str,k,ip_list=[]):
+"这应该是通用的方法"
+class Solution(object):
+    def restoreIpAddresses(self, s):
+        """
+        :type s: str
+        :rtype: List[str]
+        """
+        res = []
+        self.dfs(s, [], res)
+        return res
 
-    for i in range(1,4):
-        if str(int(ip_str[:i]))==i:
-            if int(ip_str[:i])<256:
-                restore_ip(ip_str[i:],k-1,ip_list)
+    def dfs(self, s, path, res):
+        #如果字符串大于最大长度
+        if len(s) > (4 - len(path)) * 3:
+            return
+        if not s and len(path) == 4:
+            res.append('.'.join(path))
+            return
+        for i in range(min(3, len(s))):
+            curr = s[:i + 1]
+            if (curr[0] == '0' and len(curr) >= 2) or int(curr) > 255:
+                continue
+            self.dfs(s[i + 1:], path + [s[:i + 1]], res)
 
 
 
-
-if __name__ == '__main__':
-    pass
-
+s=Solution()
+print(s.restoreIpAddresses('25525511135'))
 

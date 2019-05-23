@@ -3,7 +3,8 @@ Given a string containing only digits, restore it by returning all possible vali
 Example:
 Input: "25525511135"
 Output: ["255.255.11.135", "255.255.111.35"]
-合法的ip格式(0~255).(0~255).(0~255).(0~255)
+合法的ip格式(0~255).(0~25
+5).(0~255).(0~255)
 """
 # 参考https://leetcode.com/problems/restore-ip-addresses/discuss/30972/WHO-CAN-BEAT-THIS-CODE改进版本
 
